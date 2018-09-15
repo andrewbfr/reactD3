@@ -9,12 +9,13 @@ class BarChart extends Component {
 
     drawChart() {
         //an array to fool with
-        const data= [ 12, 5, 6, 6, 9, 10 ];
+    
+        const data= this.props.data;
         // like a long variable with jQuery attributes
         const svg = d3.select("body")
             .append("svg")
-            .attr("width", w)
-            .attr("height", h)
+            .attr("width", this.props.width)
+            .attr("height", this.props.height)
             .style("margin-left", 100);
 
         // enter and append here work to do something, the svg  still has the d3 methods available to it and these are more of them
@@ -24,11 +25,19 @@ class BarChart extends Component {
             .enter()
             .append("rect")
             .attr("x", (d, i) => i * 70)
-            //gotta see this 'y' value equation a little more clearly
-            .attr("y", (d, i) => h - 10 *d)
+            .attr("y", (d, i) => this.props.height - 10 * d)
             .attr("width", 65)
-            .attr("height", (d, i) => d * 10)
+            .attr("height", (d, i) => d * 10) 
+            .attr("fill", "green")
             ;
+        
+        svg.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .text((d) => d)
+            .attr("x", (d, i) => i * 70)
+            .attr("y", (d, i) => this.props.height - (10 * d) - 3)
     }
     render(){
         return <div id={"#" + this.props.id}></div>

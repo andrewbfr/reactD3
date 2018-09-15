@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import BarChart from './BarChart.js';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    data:[12, 5, 6, 6, 9, 10],
+    width: 700,
+    height: 500,
+    id: root
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">This is my thing.</h1>
-        </header>
-        <p className="App-intro">
-          To watch sketchy people drive around empty parking lots <code> sudo spy-mode init</code>
-        </p>
+        <BarChart data={this.state.data} width={this.state.width} height={this.state.height} />
       </div>
     );
   }
